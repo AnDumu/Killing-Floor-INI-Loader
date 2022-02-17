@@ -50,6 +50,7 @@ function Testa()
 	local int Count;
 	local string TmpField;
 	
+	//this one could be anything, ex "AAAAAAAAAAAAAAAAAAAAAA", just need 22 chars or more, the DLL will fill it with |
 	TmpField = "000000000000000000|0|0"; //SteamID + 1 char (just in case for SteamID it could get bigger) + Level + IsStillVIP 
 	
 	MutLog("----->>> B4 List = GetPerObjectNames();  <<<-----");
@@ -58,7 +59,7 @@ function Testa()
 	
 	//Get Total
 	List.Length = 1;
-	List[0] = "0000000000";
+	List[0] = "0000000000"; //same here, int is signed here, just a reminder
 	Count = GetINITotal(List, INI);
 	MutLog("----->>> GetINITotal(AreYouVipList.ini): " $ Count $ " <<<-----");
 	List.Length = 0; //Reset (just in case)
