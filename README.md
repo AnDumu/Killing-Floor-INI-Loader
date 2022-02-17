@@ -5,7 +5,7 @@ Well, I'm not gonna waste my time with **ShitHub**, this is for KF Server, when 
 
 You have 2 projects, the injector and the DLL.
 Both must be located in KF/System/ (**KFInjector2.exe** and **KFINILoader.dll**)
-Also, you will need an **injector bat** file, that will inject the dll in UCC.exe **(also it works in a sandbox ambient)**
+Also, you will need an **injector bat** file, that will inject the dll in UCC.exe **(also it works in a sandbox environment)**
 
 https://github.com/AnDumu/Killing-Floor-INI-Loader/blob/main/System/KF_Server_Launcher.bat
 
