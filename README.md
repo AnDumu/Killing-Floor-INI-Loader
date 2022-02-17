@@ -1,7 +1,7 @@
 # Killing-Floor-INI-Loader
 Load INI in Run-Time
 
-Well, I'm not gonna waste my time with **ShitHub**, this is for KF Server, when you run a dedicated server, you cannot load ini files in run-time, I patched a function named **GetPerObjectNames** to achieve this. (don't worry, you can use that function normally)
+Well, I'm not gonna waste my time with **ShitHub**, this is for KF Server, when you run a dedicated server, you cannot load ini files in **run-time**, I patched a function named **GetPerObjectNames** to achieve this. (don't worry, you can use that function normally)
 
 You have 2 projects, the injector and the DLL.
 Both must be located in KF/System/ (**KFInjector2.exe** and **KFINILoader.dll**)
