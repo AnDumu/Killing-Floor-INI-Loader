@@ -1,0 +1,65 @@
+﻿  dllmain.cpp
+  M_Functions.cpp
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\M_Functions.cpp(39,11): warning C4101: 'FS': unreferenced local variable
+  Utilities.cpp
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(80,23): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(144,19): warning C4018: '>': signed/unsigned mismatch
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(188,25): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(193,21): warning C4018: '>': signed/unsigned mismatch
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(236,20): warning C4018: '>': signed/unsigned mismatch
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(565,7): warning C4102: '_pass': unreferenced label
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(1217,22): warning C4244: 'initializing': conversion from 'double' to 'LONGLONG', possible loss of data
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(1242,22): warning C4244: 'initializing': conversion from 'double' to 'LONGLONG', possible loss of data
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(1271,22): warning C4244: 'initializing': conversion from 'double' to 'LONGLONG', possible loss of data
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(1308,46): warning C4244: 'return': conversion from 'double' to 'LONGLONG', possible loss of data
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(1322,22): warning C4244: 'initializing': conversion from 'double' to 'LONGLONG', possible loss of data
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(1337,69): warning C4244: '+=': conversion from 'double' to 'LONGLONG', possible loss of data
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(1408,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(1426,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(1444,23): warning C4018: '<': signed/unsigned mismatch
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include\xstring(2575,23): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include\xstring(2586): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(_Iter,const _Iter,std::input_iterator_tag)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include\xstring(2586): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(_Iter,const _Iter,std::input_iterator_tag)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include\xstring(2566): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(const _Iter,const _Iter,std::forward_iterator_tag)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include\xstring(2566): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<wchar_t*>(const _Iter,const _Iter,std::forward_iterator_tag)' being compiled
+          with
+          [
+              _Iter=wchar_t *
+          ]
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(769): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\KFINILoader\Utilities.cpp(769): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ]
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 610 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+detours.lib(detours.obj) : warning LNK4099: PDB 'detours.pdb' was not found with 'detours.lib(detours.obj)' or at 'C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\Release\detours.pdb'; linking object as if no debug info
+detours.lib(disasm.obj) : warning LNK4099: PDB 'detours.pdb' was not found with 'detours.lib(disasm.obj)' or at 'C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\Release\detours.pdb'; linking object as if no debug info
+  KFINILoader.vcxproj -> C:\Users\ANDUMU\Documents\Visual Studio 2019\Projects\KFINILoader\Release\KFINILoader.dll
