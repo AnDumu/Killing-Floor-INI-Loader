@@ -71,9 +71,9 @@ Expiraton=2022/03/14
 
 The **RetrieveFields** are the fiels that it's gonna return when processing.
 
-And it can be called like:
-**Total** to get the amount of items in the ini file.
-By index using a number, **1**, **2**, **3**, etc.
+And it can be called like:<br/>
+**Total** to get the amount of items in the ini file.<br/>
+By index using a number, **1**, **2**, **3**, etc.<br/>
 **All** to get all items, the list cannot skip items (you need to program it if you want), so you can add a flag the do not processing when scripting in Unreal.
 
 A working example in scripting:
@@ -180,5 +180,5 @@ simulated function MutLog(string s)
 }
 ```
 
-**Result**:
+**Result**:<br/>
 ![Alt text](https://github.com/AnDumu/Killing-Floor-INI-Loader/blob/main/KF%20INI%20Loader.png "")
