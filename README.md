@@ -79,6 +79,7 @@ By index using a number, **1**, **2**, **3**, etc.<br/>
 A working example in scripting:
 https://github.com/AnDumu/Killing-Floor-INI-Loader/blob/main/UnrealScript/AreYouVIP.uc
 
+**These functions are mandatory** (you can delete the MutLog function)<br/>
 ```
 function AllocList(out array<string> List, string TmpField)
 {
@@ -121,7 +122,10 @@ function int GetINITotal(out array<string> List, string INI)
 	
 	return int(List[0]);
 }
+```
 
+How you use it:<br/>
+```
 function Testa()
 {
 	local array<string> List;
