@@ -93,20 +93,6 @@ function AllocList(out array<string> List, string TmpField)
 	}
 }
 
-function PrintList(out array<string> List)
-{
-	local int i;
-	
-	MutLog("----->>> PrintList <<<-----");
-	
-	for (i = 0; i < List.Length; i++)
-	{
-		MutLog("             List[" $ i $ "]: " $ List[i]);
-	}
-	
-	MutLog("--------------------------");
-}
-
 function string GetINIInfo(out array<string> List, string INI, string KeyName)
 {
 	List = GetPerObjectNames(INI, KeyName, 9999999);
@@ -126,6 +112,20 @@ function int GetINITotal(out array<string> List, string INI)
 
 How you use it:<br/>
 ```
+function PrintList(out array<string> List)
+{
+	local int i;
+	
+	MutLog("----->>> PrintList <<<-----");
+	
+	for (i = 0; i < List.Length; i++)
+	{
+		MutLog("             List[" $ i $ "]: " $ List[i]);
+	}
+	
+	MutLog("--------------------------");
+}
+
 function Testa()
 {
 	local array<string> List;
