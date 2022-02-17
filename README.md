@@ -110,7 +110,7 @@ function int GetINITotal(out array<string> List, string INI)
 }
 ```
 
-How you use it:<br/>
+**How you use it**:<br/>
 ```
 function PrintList(out array<string> List)
 {
