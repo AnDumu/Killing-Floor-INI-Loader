@@ -13,7 +13,6 @@ https://wiki.beyondunreal.com/Legacy:Useful_String_Functions
 
 DWORD SystemKF::ProcessFunctions(SystemKF::eFunctions Function)
 {
-	FString* FS;
 	DWORD hRet = 0;
 
 	WriteLog(L"KF UCC.log", 0, "", ">>>>>> ProcessFunctions");
