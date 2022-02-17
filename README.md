@@ -180,4 +180,5 @@ simulated function MutLog(string s)
 }
 ```
 
-![Alt text](https://raw.githubusercontent.com/AnDumu/Killing-Floor-INI-Loader/main/KF%20INI%20Loader.png?token=GHSAT0AAAAAABRWGCN4H2TQNKSQERPA3BXUYQOX4LA "")
+**Result**:
+![Alt text](https://github.com/AnDumu/Killing-Floor-INI-Loader/blob/main/KF%20INI%20Loader.png "")
