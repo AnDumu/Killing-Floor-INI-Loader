@@ -172,11 +172,11 @@ std::string ConvertBSTRToMBS(BSTR bstr);
 std::string ConvertWCSToMBS(const wchar_t* pstr, long wslen);
 BSTR ConvertMBSToBSTR(const std::string& str);
 int GetPercent(int From, int Max);
-void WriteLog(std::wstring File, int tabs, std::string body, std::string Text);
-void WriteLog(std::wstring File, int tabs, std::wstring body, std::string Text);
-void WriteLog(std::wstring File, int tabs, std::string body, std::wstring Text);
-void WriteLog(std::wstring File, int tabs, std::string body, wchar_t* Text);
-void WriteLog(std::wstring File, int tabs, std::string body, char* Text);
+void WriteLog(std::wstring File, size_t tabs, std::string body, std::string Text);
+void WriteLog(std::wstring File, size_t tabs, std::wstring body, std::string Text);
+void WriteLog(std::wstring File, size_t tabs, std::string body, std::wstring Text);
+void WriteLog(std::wstring File, size_t tabs, std::string body, wchar_t* Text);
+void WriteLog(std::wstring File, size_t tabs, std::string body, char* Text);
 bool AvailableAddress(LPVOID lpAddress);
 
 //Functions
@@ -184,7 +184,7 @@ void LoadDebug();
 int GetMainINICount();
 int GetMainIndexChanged(int Index);
 int SetMainIndexChanged(int Index, std::wstring Value);
-int GetINICount(std::wstring File);
+size_t GetINICount(std::wstring File);
 std::wstring GetINIRetrieveFields(std::wstring File);
 std::wstring GetINIInfo(std::wstring lpAppName, std::wstring lpKeyName, std::wstring lpDefault, std::wstring File);
 BOOL HasItChanged(wchar_t* INIToFind, int index);

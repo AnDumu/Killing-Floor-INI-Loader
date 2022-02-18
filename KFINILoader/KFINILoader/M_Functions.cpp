@@ -36,7 +36,6 @@ function FillStrByStr(out string str, out string str2, int size)
 
 DWORD SystemKF::ProcessFunctions(SystemKF::eFunctions Function)
 {
-	FString* FS;
 	DWORD hRet = 0;
 
 	WriteLog(WriteLogFile, 0, "", ">>>>>> ProcessFunctions");

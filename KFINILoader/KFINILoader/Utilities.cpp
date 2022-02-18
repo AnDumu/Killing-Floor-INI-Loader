@@ -43,7 +43,7 @@ int SetMainIndexChanged(int Index, std::wstring Value)
 	return (WritePrivateProfileString(std::to_wstring(Index).c_str(), L"Changed", Value.c_str(), FullPath.c_str()));
 }
 
-int GetINICount(std::wstring File)
+size_t GetINICount(std::wstring File)
 {
 	return (GetPrivateProfileInt(L"INIT", L"Total", 0, File.c_str()));
 }
@@ -127,7 +127,7 @@ BOOL HasItChanged(wchar_t* INIToFind, int index)
 
 BOOL IsInINIList(wchar_t * INIToFind, wchar_t* Seq)
 {
-	int count = GetMainINICount();
+	size_t count = GetMainINICount();
 
 	//WriteLog("KF UCC.log", "Ini counts: ", IntToStr(count));
 
@@ -168,8 +168,8 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 {
 	DWORD hRet = 0;
 	std::wstring File;
-	int len;
-	int Total;
+	size_t len;
+	size_t Total;
 	std::wstring Data;
 
 	WriteLog(WriteLogFile, 1, "", ">>>>>> ProcessInput");
@@ -282,7 +282,7 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 		}
 		else
 		{
-			int num;
+			size_t num;
 
 			if (OutPut->Count != 1)
 			{
@@ -294,9 +294,9 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 
 			num = std::stoi(Seq);
 
-			if (num > Total || num < 1)
+			if (num == 0 || num > Total)
 			{
-				WriteLog(WriteLogFile, 2, "gettin out: num > Total || num < 1: (num) ", Seq);
+				WriteLog(WriteLogFile, 2, "gettin out: (num == 0 || num > Total): (num) ", Seq);
 
 				//dejo que llame a la función real y pise el valor (reset)
 				return 0;
@@ -635,7 +635,6 @@ DWORD Universal_FindPattern(BYTE* bMask, char* szMask, DWORD dwOffset)
 				}
 			}
 		}
-	_pass:
 
 		lpStartAddress = (LPVOID)((DWORD_PTR)(lpStartAddress)+mbi.RegionSize);
 
@@ -1471,7 +1470,7 @@ int GetPercent(int From, int Max)
 	return From * 100 / Max;
 }
 
-void WriteLog(std::wstring File, int tabs, std::string body, std::string Text)
+void WriteLog(std::wstring File, size_t tabs, std::string body, std::string Text)
 {
 	if (!Debug) return;
 
@@ -1488,7 +1487,7 @@ void WriteLog(std::wstring File, int tabs, std::string body, std::string Text)
 	ofs.close();
 }
 
-void WriteLog(std::wstring File, int tabs, std::wstring body, std::string Text)
+void WriteLog(std::wstring File, size_t tabs, std::wstring body, std::string Text)
 {
 	if (!Debug) return;
 
@@ -1506,7 +1505,7 @@ void WriteLog(std::wstring File, int tabs, std::wstring body, std::string Text)
 	ofs.close();
 }
 
-void WriteLog(std::wstring File, int tabs, std::string body, std::wstring Text)
+void WriteLog(std::wstring File, size_t tabs, std::string body, std::wstring Text)
 {
 	if (!Debug) return;
 
@@ -1524,7 +1523,7 @@ void WriteLog(std::wstring File, int tabs, std::string body, std::wstring Text)
 	ofs.close();
 }
 
-void WriteLog(std::wstring File, int tabs, std::string body, wchar_t* Text)
+void WriteLog(std::wstring File, size_t tabs, std::string body, wchar_t* Text)
 {
 	if (!Debug) return;
 
@@ -1533,7 +1532,7 @@ void WriteLog(std::wstring File, int tabs, std::string body, wchar_t* Text)
 	WriteLog(File, tabs, body, Text2);
 }
 
-void WriteLog(std::wstring File, int tabs, std::string body, char* Text)
+void WriteLog(std::wstring File, size_t tabs, std::string body, char* Text)
 {
 	if (!Debug) return;
 
