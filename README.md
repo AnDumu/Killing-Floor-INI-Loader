@@ -87,6 +87,7 @@ By index using a number, **1**, **2**, **3**, etc.<br/>
 A working example in scripting:
 https://github.com/AnDumu/Killing-Floor-INI-Loader/blob/main/UnrealScript/AreYouVIP.uc
 
+<h3 style="color:#ff0000">Danger</h3>
 **These functions are** 🔸mandatory🔸 (you can delete the MutLog function)<br/>
 ```
 function AllocList(out array<string> List, string TmpField)
