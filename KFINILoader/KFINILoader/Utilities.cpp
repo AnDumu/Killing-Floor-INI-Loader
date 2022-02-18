@@ -1,6 +1,6 @@
 #include "Utilities.h"
 
-/*	MiseryCFG.ini
+/*	M_CFG.ini
 [INIT]
 Total=1
 Debug=1
@@ -16,7 +16,7 @@ std::wstring DirPath;
 BOOL Debug = FALSE;
 
 std::wstring FullPath;
-std::wstring MainINI = L"MiseryCFG.ini";
+std::wstring MainINI = L"M_CFG.ini";
 std::wstring WriteLogFile = L"KF UCC.log";
 
 std::vector<std::wstring> LoadedINIs;
@@ -179,13 +179,13 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 	{
 		WriteLog(WriteLogFile, 2, "gettin out: ", "OutPut NULL");
 
-		//dejo que llame a la funci髇 real y pise el valor (reset)
+		//dejo que llame a la funci贸n real y pise el valor (reset)
 		return 0;
 	}
 
 	if (!IsInINIList(INIFile, Seq))
 	{
-		//dejo que llame a la funci髇 real y pise el valor (reset)
+		//dejo que llame a la funci贸n real y pise el valor (reset)
 		return 0;
 	}
 
@@ -201,7 +201,7 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 		{
 			WriteLog(WriteLogFile, 2, "gettin out: ", "OutPut->Count != 1 it must be 1");
 
-			//dejo que llame a la funci髇 real y pise el valor (reset)
+			//dejo que llame a la funci贸n real y pise el valor (reset)
 			return 0;
 		}
 
@@ -218,7 +218,7 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 		{
 			WriteLog(WriteLogFile, 2, "gettin out: ", "BufStr.length() > len");
 
-			//dejo que llame a la funci髇 real y pise el valor (reset)
+			//dejo que llame a la funci贸n real y pise el valor (reset)
 			return 0;
 		}
 
@@ -242,7 +242,7 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 		{
 			WriteLog(WriteLogFile, 2, "gettin out: ", "Retrieve Fields len 0");
 
-			//dejo que llame a la funci髇 real y pise el valor (reset)
+			//dejo que llame a la funci贸n real y pise el valor (reset)
 			return 0;
 		}
 
@@ -254,7 +254,7 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 			{
 				WriteLog(WriteLogFile, 2, "gettin out: OutPut->Count != ", std::to_string(Total));
 
-				//dejo que llame a la funci髇 real y pise el valor (reset)
+				//dejo que llame a la funci贸n real y pise el valor (reset)
 				return 0;
 			}
 
@@ -267,7 +267,7 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 				{
 					WriteLog(WriteLogFile, 2, "gettin out: Data.size() > wcslen(OutPut->FStringPtr[i].Str) insufficient allocation size! at index: ", std::to_string(i));
 
-					//dejo que llame a la funci髇 real y pise el valor (reset)
+					//dejo que llame a la funci贸n real y pise el valor (reset)
 					return 0;
 				}
 
@@ -288,7 +288,7 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 			{
 				WriteLog(WriteLogFile, 2, "gettin out: ", "OutPut->Count != 1 it must be 1");
 
-				//dejo que llame a la funci髇 real y pise el valor (reset)
+				//dejo que llame a la funci贸n real y pise el valor (reset)
 				return 0;
 			}
 
@@ -298,7 +298,7 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 			{
 				WriteLog(WriteLogFile, 2, "gettin out: (num == 0 || num > Total): (num) ", Seq);
 
-				//dejo que llame a la funci髇 real y pise el valor (reset)
+				//dejo que llame a la funci贸n real y pise el valor (reset)
 				return 0;
 			}
 
@@ -310,7 +310,7 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 			{
 				WriteLog(WriteLogFile, 2, "gettin out: Data.size() > wcslen(OutPut->FStringPtr[0].Str) insufficient allocation size!", "");
 
-				//dejo que llame a la funci髇 real y pise el valor (reset)
+				//dejo que llame a la funci贸n real y pise el valor (reset)
 				return 0;
 			}
 
