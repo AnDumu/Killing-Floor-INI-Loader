@@ -37,6 +37,8 @@ INI=AreYouVipList.ini
 Changed=0
 ```
 
+**Debug=1** will result in an output file in **/System/**, like **KF UCC.log** or whatever you configured... (std::wstring WriteLogFile = L"KF UCC.log";)</br>
+
 https://github.com/AnDumu/Killing-Floor-INI-Loader/blob/main/System/AreYouVipList.ini
 
 ```
