@@ -26,7 +26,7 @@ function PrintList(out array<string> List)
 	MutLog("--------------------------");
 }
 
-function string GetINIInfo(out array<string> List, string INI, string KeyName)
+function GetINIInfo(out array<string> List, string INI, string KeyName)
 {
 	List = GetPerObjectNames(INI, KeyName, 9999999);
 }
@@ -50,8 +50,8 @@ function Testa()
 	local int Count;
 	local string TmpField;
 	
-	//this one could be anything, ex "AAAAAAAAAAAAAAAAAAAAAA", just need 22 chars or more, the DLL will fill it with |
-	TmpField = "000000000000000000|0|0"; //SteamID + 1 char (just in case for SteamID it could get bigger) + Level + IsStillVIP 
+	//this one could be anything, just need 22 chars or more, the DLL will fill it with |
+	TmpField = "AAAAAAAAAAAAAAAAAAAAAA"; //SteamID + 1 char (just in case for SteamID it could get bigger) + Level + IsStillVIP 
 	
 	MutLog("----->>> B4 List = GetPerObjectNames();  <<<-----");
 	
@@ -59,16 +59,16 @@ function Testa()
 	
 	//Get Total
 	List.Length = 1;
-	List[0] = "0000000000"; //same here, int is signed here, just a reminder
+	List[0] = "0000000000";
 	Count = GetINITotal(List, INI);
 	MutLog("----->>> GetINITotal(AreYouVipList.ini): " $ Count $ " <<<-----");
 	List.Length = 0; //Reset (just in case)
 	// -------------------------------------------------
 	
-	//Get only 1 by index
-	/*KeyName = "1";
+	//Get only 1 by index (need to test 1 out of bounds)
+	/*KeyName = "5";
 	List.Length = 1;
-	List[0] = "076561198066780196|1";
+	List[0] = "AAAAAAAAAAAAAAAAAAAAAA";
 	GetINIInfo(List, INI, KeyName);
 	
 	if (List.Length > 0)
