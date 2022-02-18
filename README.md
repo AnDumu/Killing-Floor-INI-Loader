@@ -196,3 +196,5 @@ simulated function MutLog(string s)
 
 **Result**:<br/>
 ![Alt text](https://github.com/AnDumu/Killing-Floor-INI-Loader/blob/main/KF%20INI%20Loader.png "")
+
+![Alt text](https://github.com/AnDumu/Killing-Floor-INI-Loader/blob/main/krusty-professional.gif "")
