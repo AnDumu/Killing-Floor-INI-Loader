@@ -57,8 +57,12 @@ extern DWORD IDThread;
 extern HANDLE hThread;
 extern std::wstring DirPath;
 extern BOOL Debug;
+
 extern std::wstring FullPath;
 extern std::wstring MainINI;
+extern std::wstring WriteLogFile;
+
+extern std::vector<std::wstring> LoadedINIs;
 
 BOOL EnableDebugPrivileges();
 DWORD GetFunctionByModule(std::string DLL, std::string Function);
@@ -173,12 +177,16 @@ void WriteLog(std::wstring File, int tabs, std::wstring body, std::string Text);
 void WriteLog(std::wstring File, int tabs, std::string body, std::wstring Text);
 void WriteLog(std::wstring File, int tabs, std::string body, wchar_t* Text);
 void WriteLog(std::wstring File, int tabs, std::string body, char* Text);
+bool AvailableAddress(LPVOID lpAddress);
 
 //Functions
 void LoadDebug();
 int GetMainINICount();
+int GetMainIndexChanged(int Index);
+int SetMainIndexChanged(int Index, std::wstring Value);
 int GetINICount(std::wstring File);
 std::wstring GetINIRetrieveFields(std::wstring File);
 std::wstring GetINIInfo(std::wstring lpAppName, std::wstring lpKeyName, std::wstring lpDefault, std::wstring File);
-BOOL IsInINIList(wchar_t * INIToFind);
+BOOL HasItChanged(wchar_t* INIToFind, int index);
+BOOL IsInINIList(wchar_t * INIToFind, wchar_t* Seq);
 DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString* OutPut);

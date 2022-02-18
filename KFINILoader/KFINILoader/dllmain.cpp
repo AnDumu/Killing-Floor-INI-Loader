@@ -131,11 +131,11 @@ DWORD M_DetourGetPerObjectNames_Sub1(DWORD Address)
 	{
 		Core_GConfigOrWhatEver = ReadInProcessDWORD(FoundAddress + 0x06);
 
-		WriteLog(L"KF UCC.log", 0, ">>> M_DetourGetPerObjectNames_Sub1 -> Core_GConfigOrWhatEver ", IntToHexStr(Core_GConfigOrWhatEver));
+		WriteLog(WriteLogFile, 0, ">>> M_DetourGetPerObjectNames_Sub1 -> Core_GConfigOrWhatEver ", IntToHexStr(Core_GConfigOrWhatEver));
 
 		Core_GConfigOrWhatEver_Offset = ReadInProcessBYTE(FoundAddress + 0x10);
 
-		WriteLog(L"KF UCC.log", 0, ">>> M_DetourGetPerObjectNames_Sub1 -> Core_GConfigOrWhatEver_Offset ", IntToHexStr(Core_GConfigOrWhatEver_Offset));
+		WriteLog(WriteLogFile, 0, ">>> M_DetourGetPerObjectNames_Sub1 -> Core_GConfigOrWhatEver_Offset ", IntToHexStr(Core_GConfigOrWhatEver_Offset));
 
 		//[[[101B11F4]]+24]
 
@@ -151,7 +151,7 @@ DWORD M_DetourGetPerObjectNames_Sub1(DWORD Address)
 			mov [FoundAddress], eax
 		}
 
-		WriteLog(L"KF UCC.log", 0, ">>> M_DetourGetPerObjectNames_Sub1 -> FoundAddress ", IntToHexStr(FoundAddress));
+		WriteLog(WriteLogFile, 0, ">>> M_DetourGetPerObjectNames_Sub1 -> FoundAddress ", IntToHexStr(FoundAddress));
 
 		pTrampolineGetPerObjectNames_Sub1 = (MyGenericVoidNOPARAM)DetourFunction((PBYTE)FoundAddress, (PBYTE)&DetourGetPerObjectNames_Sub1);
 	}
@@ -178,7 +178,7 @@ DWORD M_DetourGetPerObjectNames_Sub2(DWORD Address)
 	{
 		FoundAddress = GetRealCALL(FoundAddress);
 
-		WriteLog(L"KF UCC.log", 0, ">>> M_DetourGetPerObjectNames_Sub2 -> FoundAddress ", IntToHexStr(FoundAddress));
+		WriteLog(WriteLogFile, 0, ">>> M_DetourGetPerObjectNames_Sub2 -> FoundAddress ", IntToHexStr(FoundAddress));
 
 		pTrampolineGetPerObjectNames_Sub2 = (MyGenericVoidNOPARAM)DetourFunction((PBYTE)FoundAddress, (PBYTE)&DetourGetPerObjectNames_Sub2);
 	}
@@ -199,7 +199,7 @@ DWORD M_DetourGetPerObjectNames_Sub3(DWORD Address)
 
 	if (FoundAddress)
 	{
-		WriteLog(L"KF UCC.log", 0, ">>> M_DetourGetPerObjectNames_Sub3 -> FoundAddress ", IntToHexStr(FoundAddress));
+		WriteLog(WriteLogFile, 0, ">>> M_DetourGetPerObjectNames_Sub3 -> FoundAddress ", IntToHexStr(FoundAddress));
 
 		pTrampolineGetPerObjectNames_Sub3 = (MyGenericVoidNOPARAM)DetourFunction((PBYTE)FoundAddress, (PBYTE)&DetourGetPerObjectNames_Sub3);
 	}
@@ -220,9 +220,10 @@ DWORD WINAPI ThreadFunc(VOID)
 
 	DirPath = GetExePathW();
 	FullPath = DirPath + MainINI;
+	LoadedINIs.clear();
 	LoadDebug();
 
-	WriteLog(L"KF UCC.log", 0, "DirPath: ", DirPath.c_str());
+	WriteLog(WriteLogFile, 0, "DirPath: ", DirPath.c_str());
 
 	while (1)
 	{
@@ -237,42 +238,42 @@ DWORD WINAPI ThreadFunc(VOID)
 			{
 				if (M_DetourGetPerObjectNames(dFunction))
 				{
-					WriteLog(L"KF UCC.log", 0, "", "M_DetourGetPerObjectNames Detoured!!!");
+					WriteLog(WriteLogFile, 0, "", "M_DetourGetPerObjectNames Detoured!!!");
 
 					if (M_DetourGetPerObjectNames_Sub1(dFunction))
 					{
-						WriteLog(L"KF UCC.log", 0, "", "M_DetourGetPerObjectNames_Sub1 Detoured!!!");
+						WriteLog(WriteLogFile, 0, "", "M_DetourGetPerObjectNames_Sub1 Detoured!!!");
 
 						if (M_DetourGetPerObjectNames_Sub2(dFunction))
 						{
-							WriteLog(L"KF UCC.log", 0, "", "M_DetourGetPerObjectNames_Sub2 Detoured!!!");
+							WriteLog(WriteLogFile, 0, "", "M_DetourGetPerObjectNames_Sub2 Detoured!!!");
 
 							if (M_DetourGetPerObjectNames_Sub3(dFunction_bk))
 							{
-								WriteLog(L"KF UCC.log", 0, "", "M_DetourGetPerObjectNames_Sub3 Detoured!!!");
-								WriteLog(L"KF UCC.log", 0, "", "");
+								WriteLog(WriteLogFile, 0, "", "M_DetourGetPerObjectNames_Sub3 Detoured!!!");
+								WriteLog(WriteLogFile, 0, "", "");
 							}
 							else
 							{
-								WriteLog(L"KF UCC.log", 0, "", "M_DetourGetPerObjectNames_Sub3 COULD NOT Detoured :(");
+								WriteLog(WriteLogFile, 0, "", "M_DetourGetPerObjectNames_Sub3 COULD NOT Detoured :(");
 								ExitProcess(0);
 							}
 						}
 						else
 						{
-							WriteLog(L"KF UCC.log", 0, "", "M_DetourGetPerObjectNames_Sub2 COULD NOT Detoured :(");
+							WriteLog(WriteLogFile, 0, "", "M_DetourGetPerObjectNames_Sub2 COULD NOT Detoured :(");
 							ExitProcess(0);
 						}
 					}
 					else
 					{
-						WriteLog(L"KF UCC.log", 0, "", "M_DetourGetPerObjectNames_Sub1 COULD NOT Detoured :(");
+						WriteLog(WriteLogFile, 0, "", "M_DetourGetPerObjectNames_Sub1 COULD NOT Detoured :(");
 						ExitProcess(0);
 					}
 				}
 				else
 				{
-					WriteLog(L"KF UCC.log", 0, "", "M_DetourGetPerObjectNames COULD NOT Detoured :(");
+					WriteLog(WriteLogFile, 0, "", "M_DetourGetPerObjectNames COULD NOT Detoured :(");
 					ExitProcess(0);
 				}
 			}

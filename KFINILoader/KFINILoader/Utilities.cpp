@@ -1,6 +1,6 @@
 #include "Utilities.h"
 
-/*	M_CFG.ini
+/*	MiseryCFG.ini
 [INIT]
 Total=1
 Debug=1
@@ -16,7 +16,10 @@ std::wstring DirPath;
 BOOL Debug = FALSE;
 
 std::wstring FullPath;
-std::wstring MainINI = L"M_CFG.ini";
+std::wstring MainINI = L"MiseryCFG.ini";
+std::wstring WriteLogFile = L"KF UCC.log";
+
+std::vector<std::wstring> LoadedINIs;
 
 #pragma warning (disable:4996) //_SCL_SECURE_NO_WARNINGS
 
@@ -28,6 +31,16 @@ void LoadDebug()
 int GetMainINICount()
 {
 	return (GetPrivateProfileInt(L"INIT", L"Total", 0, FullPath.c_str()));
+}
+
+int GetMainIndexChanged(int Index)
+{
+	return (GetPrivateProfileInt(std::to_wstring(Index).c_str(), L"Changed", 0, FullPath.c_str()));
+}
+
+int SetMainIndexChanged(int Index, std::wstring Value)
+{
+	return (WritePrivateProfileString(std::to_wstring(Index).c_str(), L"Changed", Value.c_str(), FullPath.c_str()));
 }
 
 int GetINICount(std::wstring File)
@@ -67,13 +80,58 @@ std::wstring GetINIItem(std::wstring Name, std::vector<std::wstring> Fields, std
 	return Data;
 }
 
-BOOL IsInINIList(wchar_t * INIToFind)
+BOOL IsInVector(wchar_t* INIToFind)
+{
+	for (size_t i = 0; i < LoadedINIs.size(); i++)
+	{
+		if (wcsicmp(LoadedINIs[i].c_str(), INIToFind) == NULL)
+		{
+			return TRUE;
+		}
+	}
+
+	LoadedINIs.push_back(INIToFind);
+
+	return FALSE;
+}
+
+BOOL HasItChanged(wchar_t* INIToFind, int index)
+{
+	BOOL hRet;
+
+	if (!IsInVector(INIToFind))
+	{
+		WriteLog(WriteLogFile, 0, "", "");
+		WriteLog(WriteLogFile, 2, INIToFind, " wasn't FirstLoad, we load it.");
+		WriteLog(WriteLogFile, 0, "", "");
+
+		return TRUE;
+	}
+
+	hRet = GetMainIndexChanged(index);
+
+	//we reset flag
+	if (hRet)
+	{
+		SetMainIndexChanged(index, L"0");
+	}
+	else
+	{
+		WriteLog(WriteLogFile, 0, "", "");
+		WriteLog(WriteLogFile, 2, INIToFind, " was already FirstLoad, and Changed is 0.");
+		WriteLog(WriteLogFile, 0, "", "");
+	}
+
+	return hRet;
+}
+
+BOOL IsInINIList(wchar_t * INIToFind, wchar_t* Seq)
 {
 	int count = GetMainINICount();
 
 	//WriteLog("KF UCC.log", "Ini counts: ", IntToStr(count));
 
-	if (count <= 0) return FALSE;
+	if (count < 1) return FALSE;
 
 	std::wstring BufStr;
 
@@ -83,8 +141,25 @@ BOOL IsInINIList(wchar_t * INIToFind)
 
 		//GetPrivateProfileStringA(IntToStr(i).c_str(), "INI", "", Buf, 255, FullPath.c_str());
 
-		if (wcsicmp(BufStr.c_str(), INIToFind) == NULL) return TRUE;
+		//We found the INI file in the list
+		if (wcsicmp(BufStr.c_str(), INIToFind) == NULL)
+		{
+			WriteLog(WriteLogFile, 0, "", "");
+			WriteLog(WriteLogFile, 2, INIToFind, " is in list!!!");
+			WriteLog(WriteLogFile, 0, "", "");
+
+			if (wcsicmp(Seq, L"All") == NULL)
+			{
+				return HasItChanged(INIToFind, i);
+			}
+			else
+			{
+				return TRUE;
+			}
+		}
 	}
+
+	WriteLog(WriteLogFile, 2, "gettin out: ", "is NOT in list.");
 
 	return FALSE;
 }
@@ -97,22 +172,20 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 	int Total;
 	std::wstring Data;
 
-	WriteLog(L"KF UCC.log", 1, "", ">>>>>> ProcessInput");
-	WriteLog(L"KF UCC.log", 2, "Sequence: ", Seq);
+	WriteLog(WriteLogFile, 1, "", ">>>>>> ProcessInput");
+	WriteLog(WriteLogFile, 2, "Sequence: ", Seq);
 
 	if (!OutPut)
 	{
-		WriteLog(L"KF UCC.log", 2, "gettin out: ", "OutPut NULL");
+		WriteLog(WriteLogFile, 2, "gettin out: ", "OutPut NULL");
 
-		//dejo que llame a la funci贸n real y pise el valor (reset)
+		//dejo que llame a la funci髇 real y pise el valor (reset)
 		return 0;
 	}
 
-	if (OutPut->Count == 0)
+	if (!IsInINIList(INIFile, Seq))
 	{
-		WriteLog(L"KF UCC.log", 2, "gettin out: ", "OutPut->Count == 0");
-
-		//dejo que llame a la funci贸n real y pise el valor (reset)
+		//dejo que llame a la funci髇 real y pise el valor (reset)
 		return 0;
 	}
 
@@ -120,32 +193,32 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 
 	Total = GetINICount(File);
 
-	WriteLog(L"KF UCC.log", 2, "File: ", File);
+	WriteLog(WriteLogFile, 2, "File: ", File);
 
 	if (wcsicmp(Seq, L"TOTAL") == NULL)
 	{
 		if (OutPut->Count != 1)
 		{
-			WriteLog(L"KF UCC.log", 2, "gettin out: ", "OutPut->Count != 1 it must be 1");
+			WriteLog(WriteLogFile, 2, "gettin out: ", "OutPut->Count != 1 it must be 1");
 
-			//dejo que llame a la funci贸n real y pise el valor (reset)
+			//dejo que llame a la funci髇 real y pise el valor (reset)
 			return 0;
 		}
 
 		//GetPrivateProfileString(L"INIT", L"Total", L"", Buf, 255, File.c_str());;
 		Data = GetINIInfo(L"INIT", L"Total", L"", File.c_str());
 
-		WriteLog(L"KF UCC.log", 2, "BuffStr: ", Data);
+		WriteLog(WriteLogFile, 2, "BuffStr: ", Data);
 
 		len = wcslen(OutPut->FStringPtr[0].Str);
 
-		WriteLog(L"KF UCC.log", 2, "OutPut->FStringPtr[0].Str len: ", IntToStr(len));
+		WriteLog(WriteLogFile, 2, "OutPut->FStringPtr[0].Str len: ", IntToStr(len));
 
 		if (Data.size() > len)
 		{
-			WriteLog(L"KF UCC.log", 2, "gettin out: ", "BufStr.length() > len");
+			WriteLog(WriteLogFile, 2, "gettin out: ", "BufStr.length() > len");
 
-			//dejo que llame a la funci贸n real y pise el valor (reset)
+			//dejo que llame a la funci髇 real y pise el valor (reset)
 			return 0;
 		}
 
@@ -153,7 +226,7 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 		//auto new_str = std::string(n_zero - std::min(n_zero, old_str.length()), '0') + old_str;
 		std::wstring OutWStr = std::wstring(len - Data.size(), '0') + Data;
 
-		WriteLog(L"KF UCC.log", 2, "OutWStr: ", OutWStr);
+		WriteLog(WriteLogFile, 2, "OutWStr: ", OutWStr);
 
 		wcscpy(OutPut->FStringPtr[0].Str, OutWStr.c_str());
 
@@ -161,15 +234,15 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 	}
 	else
 	{
-		WriteLog(L"KF UCC.log", 2, "else", "");
+		WriteLog(WriteLogFile, 2, "else", "");
 
 		std::wstring Fields = GetINIRetrieveFields(File);
 
 		if (Fields.size() == 0)
 		{
-			WriteLog(L"KF UCC.log", 2, "gettin out: ", "Retrieve Fields len 0");
+			WriteLog(WriteLogFile, 2, "gettin out: ", "Retrieve Fields len 0");
 
-			//dejo que llame a la funci贸n real y pise el valor (reset)
+			//dejo que llame a la funci髇 real y pise el valor (reset)
 			return 0;
 		}
 
@@ -179,9 +252,9 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 		{
 			if (OutPut->Count != Total)
 			{
-				WriteLog(L"KF UCC.log", 2, "gettin out: OutPut->Count != ", std::to_string(Total));
+				WriteLog(WriteLogFile, 2, "gettin out: OutPut->Count != ", std::to_string(Total));
 
-				//dejo que llame a la funci贸n real y pise el valor (reset)
+				//dejo que llame a la funci髇 real y pise el valor (reset)
 				return 0;
 			}
 
@@ -192,15 +265,15 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 
 				if (Data.size() > len)
 				{
-					WriteLog(L"KF UCC.log", 2, "gettin out: Data.size() > wcslen(OutPut->FStringPtr[i].Str) insufficient allocation size! at index: ", std::to_string(i));
+					WriteLog(WriteLogFile, 2, "gettin out: Data.size() > wcslen(OutPut->FStringPtr[i].Str) insufficient allocation size! at index: ", std::to_string(i));
 
-					//dejo que llame a la funci贸n real y pise el valor (reset)
+					//dejo que llame a la funci髇 real y pise el valor (reset)
 					return 0;
 				}
 
 				std::wstring OutWStr = Data + std::wstring(len - Data.size(), '|');
 
-				WriteLog(L"KF UCC.log", 2, "OutWStr (in loop): ", OutWStr);
+				WriteLog(WriteLogFile, 2, "OutWStr (in loop): ", OutWStr);
 
 				wcscpy(OutPut->FStringPtr[i - 1].Str, OutWStr.c_str());
 			}
@@ -213,9 +286,9 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 
 			if (OutPut->Count != 1)
 			{
-				WriteLog(L"KF UCC.log", 2, "gettin out: ", "OutPut->Count != 1 it must be 1");
+				WriteLog(WriteLogFile, 2, "gettin out: ", "OutPut->Count != 1 it must be 1");
 
-				//dejo que llame a la funci贸n real y pise el valor (reset)
+				//dejo que llame a la funci髇 real y pise el valor (reset)
 				return 0;
 			}
 
@@ -223,9 +296,9 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 
 			if (num > Total || num < 1)
 			{
-				WriteLog(L"KF UCC.log", 2, "gettin out: num > Total || num < 1: (num) ", Seq);
+				WriteLog(WriteLogFile, 2, "gettin out: num > Total || num < 1: (num) ", Seq);
 
-				//dejo que llame a la funci贸n real y pise el valor (reset)
+				//dejo que llame a la funci髇 real y pise el valor (reset)
 				return 0;
 			}
 
@@ -235,15 +308,15 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 
 			if (Data.size() > len)
 			{
-				WriteLog(L"KF UCC.log", 2, "gettin out: Data.size() > wcslen(OutPut->FStringPtr[0].Str) insufficient allocation size!", "");
+				WriteLog(WriteLogFile, 2, "gettin out: Data.size() > wcslen(OutPut->FStringPtr[0].Str) insufficient allocation size!", "");
 
-				//dejo que llame a la funci贸n real y pise el valor (reset)
+				//dejo que llame a la funci髇 real y pise el valor (reset)
 				return 0;
 			}
 
 			std::wstring OutWStr = Data + std::wstring(len - Data.size(), '|');
 
-			WriteLog(L"KF UCC.log", 2, "OutWStr: ", OutWStr);
+			WriteLog(WriteLogFile, 2, "OutWStr: ", OutWStr);
 
 			wcscpy(OutPut->FStringPtr[0].Str, OutWStr.c_str());
 
@@ -251,8 +324,8 @@ DWORD ProcessInput(wchar_t * INIFile, wchar_t * Seq, FString * OutPut)
 		}
 	}
 
-	WriteLog(L"KF UCC.log", 1, "", "<<<<<< ProcessInput out");
-	WriteLog(L"KF UCC.log", 1, "", "----------------------------------");
+	WriteLog(WriteLogFile, 1, "", "<<<<<< ProcessInput out");
+	WriteLog(WriteLogFile, 1, "", "----------------------------------");
 
 	return hRet;
 }
@@ -1467,4 +1540,16 @@ void WriteLog(std::wstring File, int tabs, std::string body, char* Text)
 	std::string Text2(Text);
 
 	WriteLog(File, tabs, body, Text2);
+}
+
+bool AvailableAddress(LPVOID lpAddress)
+{
+	MEMORY_BASIC_INFORMATION mbi = { 0 };
+
+	//2020-08-16
+	if (!VirtualQuery((LPCVOID)lpAddress, &mbi, sizeof(mbi))) return false;
+
+	if (!mbi.BaseAddress) return false;
+
+	return !IsBadCodePtr((FARPROC)lpAddress);
 }
