@@ -148,7 +148,7 @@ BOOL IsInINIList(wchar_t * INIToFind, wchar_t* Seq)
 			WriteLog(WriteLogFile, 2, INIToFind, " is in list!!!");
 			WriteLog(WriteLogFile, 0, "", "");
 
-			if (wcsicmp(Seq, L"All") == NULL)
+			if (wcsicmp(Seq, L"ALL") == NULL)
 			{
 				return HasItChanged(INIToFind, i);
 			}
