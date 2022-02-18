@@ -15,6 +15,14 @@ start "Injector" cmd /c KFInjector.bat
 ucc.exe server KF-westlondon.rom?game=KFmod.KFGameType?MaxPlayers=23?Mutator=MutLoader.MutLoader -log=server.log
 ```
 
+https://github.com/AnDumu/Killing-Floor-INI-Loader/blob/main/System/KFInjector.bat
+```
+@echo off
+timeout 3
+KFInjector2 "ucc.exe" "KFINILoader.dll"
+pause
+```
+
 All INIs must be located within **M_CFG.ini** or the name you give in the project.
 
 https://github.com/AnDumu/Killing-Floor-INI-Loader/blob/main/System/M_CFG.ini
