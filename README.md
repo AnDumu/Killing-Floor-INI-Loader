@@ -200,6 +200,6 @@ simulated function MutLog(string s)
 ![Alt text](https://github.com/AnDumu/Killing-Floor-INI-Loader/blob/main/krusty-professional.gif "")
 
 **Extra**:
-You can add more tags like **AllWays** beyond **All** and **1,2,3,..** (numbers) or whatever you want to avoid **the Change flag**, the code could be upgraded when processing data, but not everyone is gonna touch it or know anything about programming, so I did split it for a better understanding.
+You can add more tags like **AllWays** beyond **All** and **1,2,3,..** (numbers) or whatever you want to avoid **the Changed flag**, the code could be upgraded when processing data, but not everyone is gonna touch it or know anything about programming, so I did split it for a better understanding.
 
 Logic, for this example, you add a new VIP one, you add it in **AreYouVipList.ini**, then you go to **M_CFG.ini** and you change **Changed flag** to **1**, and BOOM, it is gonna be reloaded, remmeber to use the above unrealscript that calls that function with in a good way to not crash or to avoid unexpected situations.
