@@ -12,7 +12,7 @@
 
 #include <random> //randomnumber
 
-#include <iomanip> //std::setfill, std::setw, put_time y m·s
+#include <iomanip> //std::setfill, std::setw, put_time y m√°s
 
 #include <atlstr.h> //CW2A
 
@@ -108,7 +108,7 @@ std::vector<std::wstring> Split(const std::wstring& s, const std::wstring& delim
 BOOL bCompare(const BYTE* pData, const BYTE* bMask, const char* szMask);
 DWORD FindPattern(DWORD dwAddress, DWORD dwLen, BYTE* bMask, char* szMask);
 bool Check(const BYTE* pData, const BYTE* bMask, const char* szMask);
-DWORD FindPattern_Misery(BYTE* bMask, char* szMask, DWORD dwOffset, DWORD dwAddress, DWORD dwLen);
+DWORD FindPattern_M(BYTE* bMask, char* szMask, DWORD dwOffset, DWORD dwAddress, DWORD dwLen);
 DWORD Universal_FindPattern(BYTE* bMask, char* szMask, DWORD dwOffset);
 DWORD Universal_EpiSpecial(DWORD ActualAddress, DWORD Size);
 std::string M_Ucase(std::string Cadena);
