@@ -1,8 +1,6 @@
 #include "Utilities.h"
 #include "M_Functions.h"
 
-//SystemKF MiserySKF;
-
 DWORD WINAPI ThreadFunc(VOID);
 DWORD M_DetourGetPerObjectNames(DWORD Address);
 DWORD M_DetourGetPerObjectNames_Sub1(DWORD Address);
@@ -35,7 +33,7 @@ __declspec(naked) void __stdcall DetourGetPerObjectNames()
 	__asm pushad;
 	__asm pushfd;
 
-	GetPerObjectNames_Ret = MiserySKF.ProcessFunctions(SystemKF::eFunctions::fGetPerObjectNames);
+	GetPerObjectNames_Ret = MSKF.ProcessFunctions(SystemKF::eFunctions::fGetPerObjectNames);
 
 	__asm popfd;
 	__asm popad;
@@ -117,7 +115,7 @@ Core.UObject::execGetPerObjectNames+FF - 8B 0D F4111B10        - mov ecx,[Core.G
 Core.UObject::execGetPerObjectNames+105- 8B 11                 - mov edx,[ecx]
 Core.UObject::execGetPerObjectNames+107- 50                    - push eax
 Core.UObject::execGetPerObjectNames+108- 56                    - push esi { EBP+C						}
-Core.UObject::execGetPerObjectNames+109- FF 52 24              - call dword ptr [edx+24] { >>> ac· lo pisa o rompe						}
+Core.UObject::execGetPerObjectNames+109- FF 52 24              - call dword ptr [edx+24] { >>> ac√° lo pisa o rompe						}
 
 ret 0008
 */
@@ -125,7 +123,7 @@ DWORD M_DetourGetPerObjectNames_Sub1(DWORD Address)
 {
 	DWORD FoundAddress;
 
-	FoundAddress = FindPattern_Misery((PBYTE)"\xEB\x02\x33\xC0", const_cast<char*>("xxxx"), 0x00, Address, 0x1000);
+	FoundAddress = FindPattern_M((PBYTE)"\xEB\x02\x33\xC0", const_cast<char*>("xxxx"), 0x00, Address, 0x1000);
 
 	if (FoundAddress)
 	{
@@ -166,13 +164,13 @@ xx???x
 Core.UObject::execGetPerObjectNames+335 - 6A 01                 - push 01 { 1 }
 Core.UObject::execGetPerObjectNames+337 - 52                    - push edx
 Core.UObject::execGetPerObjectNames+338 - 8B CE                 - mov ecx,esi
-Core.UObject::execGetPerObjectNames+33A - E8 512CFEFF           - call Core.ULinker::operator=+520 { >>> ac· se pisa el output					 }
+Core.UObject::execGetPerObjectNames+33A - E8 512CFEFF           - call Core.ULinker::operator=+520 { >>> ac√° se pisa el output					 }
 */
 DWORD M_DetourGetPerObjectNames_Sub2(DWORD Address)
 {
 	DWORD FoundAddress;
 
-	FoundAddress = FindPattern_Misery((PBYTE)"\x6A\x01\x00\x00\x00\xE8", const_cast<char*>("xx???x"), 0x05, Address, 0x1000);
+	FoundAddress = FindPattern_M((PBYTE)"\x6A\x01\x00\x00\x00\xE8", const_cast<char*>("xx???x"), 0x05, Address, 0x1000);
 
 	if (FoundAddress)
 	{
@@ -195,7 +193,7 @@ DWORD M_DetourGetPerObjectNames_Sub3(DWORD Address)
 {
 	DWORD FoundAddress;
 
-	FoundAddress = FindPattern_Misery((PBYTE)"\x8B\xE5\x5D\xC2\x08\x00", const_cast<char*>("xxxxxx"), 0x00, Address, 0x1000);
+	FoundAddress = FindPattern_M((PBYTE)"\x8B\xE5\x5D\xC2\x08\x00", const_cast<char*>("xxxxxx"), 0x00, Address, 0x1000);
 
 	if (FoundAddress)
 	{
