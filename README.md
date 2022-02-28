@@ -84,7 +84,7 @@ The **RetrieveFields** are the fields that it's gonna return when processing.
 And it can be called like:<br/>
 **Total** to get the amount of items in the ini file.<br/>
 By index using a number, **1**, **2**, **3**, etc.<br/>
-**All** to get all items, the list cannot skip items (you need to program it if you want), so you can add a flag to do not processing when scripting in Unreal.
+**All** to get all items, the list cannot skip items (you need to program it if you want to), so you can add a flag to do not processing when scripting in Unreal.
 
 A working example in scripting:
 https://github.com/AnDumu/Killing-Floor-INI-Loader/blob/main/UnrealScript/AreYouVIP.uc
