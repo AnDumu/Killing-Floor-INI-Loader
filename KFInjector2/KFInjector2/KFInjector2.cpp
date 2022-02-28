@@ -1,9 +1,6 @@
 // KFInjector2.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-// KFInjector.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <Windows.h>
 #include <tlhelp32.h>
