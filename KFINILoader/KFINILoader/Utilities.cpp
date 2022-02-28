@@ -570,7 +570,7 @@ bool Check(const BYTE* pData, const BYTE* bMask, const char* szMask)
 	return (*szMask) == NULL;
 }
 
-DWORD FindPattern_Misery(BYTE* bMask, char* szMask, DWORD dwOffset, DWORD dwAddress, DWORD dwLen)
+DWORD FindPattern_M(BYTE* bMask, char* szMask, DWORD dwOffset, DWORD dwAddress, DWORD dwLen)
 {
 	__try
 	{
@@ -669,7 +669,7 @@ DWORD Universal_EpiSpecial(DWORD ActualAddress, DWORD Size)
 	//C3 CC CC
 	//xxx
 
-	return FindPattern_Misery((PBYTE)"\xC3\xCC\xCC", const_cast<char*>("xxx"), 0x00, ActualAddress, Size);
+	return FindPattern_M((PBYTE)"\xC3\xCC\xCC", const_cast<char*>("xxx"), 0x00, ActualAddress, Size);
 }
 
 std::string M_Ucase(std::string Cadena)
