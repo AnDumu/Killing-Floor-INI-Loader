@@ -6,29 +6,6 @@
 #include <tlhelp32.h>
 #include <algorithm> //std::transform
 
-// Inject is a tool which injects an ordered list of shared libraries into the
-// address space of a binary executable. The created process is initially
-// suspended, and resumes execution once the ordered list of shared libraries
-// have been loaded into its address space, and their respective DllMain
-// functions have finished executing.
-//
-// Usage
-//
-//    $ inject EXE [DLL...]
-//
-// Examples
-//
-//    $ inject a.exe b.dll c.dll
-//
-// Order of execution:
-//
-//    1. Creates a suspended process of "a.exe".
-//    2. Loads "b.dll" into the address space of "a.exe".
-//    3. Executes the "DllMain" function of "b.dll".
-//    4. Loads "c.dll" into the address space of "a.exe".
-//    5. Executes the "DllMain" function of "d.dll".
-//    6. Resumes execution of "a.exe".
-
 BOOL EnableDebugPrivileges()
 {
 	HANDLE tokenHandle;
