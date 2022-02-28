@@ -1,7 +1,7 @@
 #include "M_Functions.h"
 #include "Utilities.h"
 
-SystemKF MiserySKF;
+SystemKF MSKF;
 
 /*
 https://docs.unrealengine.com/udk/Three/StringsInUnrealScript.html
