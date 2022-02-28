@@ -29,4 +29,4 @@ public:
 	DWORD ProcessFunctions(eFunctions Function);
 };
 
-extern SystemKF MiserySKF;
+extern SystemKF MSKF;
