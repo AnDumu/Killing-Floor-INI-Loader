@@ -77,7 +77,7 @@ HANDLE GetProcessByName(std::string name)
 
 /*
 KFInjector.exe ucc.exe tuvieja.dll
-Count: 4
+Count: 3
 0: KFInjector.exe
 1: ucc.exe
 2: tuvieja.dll
