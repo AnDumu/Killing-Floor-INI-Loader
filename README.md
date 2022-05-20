@@ -79,7 +79,7 @@ Bought=2022/02/13
 Expiraton=2022/03/14
 ```
 
-The **RetrieveFields** are the fields that it's gonna return when processing.
+The **RetrieveFields** is the fields that it's gonna return when processing.
 
 And it can be called like:<br/>
 **Total** to get the amount of items in the ini file.<br/>
